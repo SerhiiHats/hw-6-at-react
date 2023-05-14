@@ -1,4 +1,4 @@
-import './App.scss';
+import styles from './App.modul.scss';
 import Header from "../Header/Header";
 import {connect} from "react-redux";
 import React, {Component} from 'react';
@@ -8,10 +8,11 @@ class App extends Component {
   render() {
     const {headerReducer} = this.props;
     return (
-      <div className="App">
+      <div className={"app"}>
         <Header nameTask={headerReducer.task1} descriptionTask={headerReducer.description1}/>
-        <FormAuthorization/>
         <Header nameTask={headerReducer.task2} descriptionTask={headerReducer.description2}/>
+        <FormAuthorization/>
+
 
       </div>
     );

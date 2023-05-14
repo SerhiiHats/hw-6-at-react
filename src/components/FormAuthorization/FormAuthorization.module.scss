@@ -29,11 +29,16 @@
           width: 96%;
           height: $size * 3.6;
           font-size: $fontSize* 1.2;
+          //border: $size 0.2 solid $attentionColor;
 
           &::placeholder {
             font-size: $fontSize * 0.8;
           }
 
+        }
+
+        .invalid{
+            border: $size * 0.2 solid $attentionColor;
         }
 
       }
