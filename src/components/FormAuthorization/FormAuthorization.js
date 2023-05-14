@@ -1,9 +1,9 @@
-import "./FormFeedback.css"
+import "./FormAuthorization.scss"
 import {Component} from "react";
 import {addAC} from "./formAction";
 import {connect} from "react-redux";
 
-class FormFeedback extends Component {
+class FormAuthorization extends Component {
   state = {
     userName: "",
     userEmail: "",
@@ -28,7 +28,7 @@ class FormFeedback extends Component {
 
     return (
       <div className={"containerForm"}>
-        <form className={"FormFeedback"}>
+        <form className={"formFeedback"}>
 
           <div className={"row"}>
             <label>Ім'я<span>*</span>
@@ -57,8 +57,8 @@ class FormFeedback extends Component {
             </label>
           </div>
 
-          <div className={"Row"}>
-            <input className={"BtnSubmit"} type={"submit"} value={"Зареєструватися"}
+          <div className={"row"}>
+            <input className={"btnSubmit"} type={"submit"} value={"Зареєструватися"}
                    onClick={(e) => {
                      e.preventDefault();
                      dispatch(addAC(this.state));
@@ -77,4 +77,4 @@ const mapStateToProps = (store) => {
   }
 }
 
-export default connect(mapStateToProps)(FormFeedback);
+export default connect(mapStateToProps)(FormAuthorization);

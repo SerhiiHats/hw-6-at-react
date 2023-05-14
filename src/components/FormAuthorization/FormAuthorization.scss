@@ -1,0 +1,62 @@
+.containerForm {
+  background-color: #2B7A7B;
+  color: white;
+  padding: 20px 0;
+
+  .formFeedback {
+    width: 500px;
+    margin: 0 auto 0 auto;
+    border: 2px solid #61dafb;
+    //background-color: lightgray;
+    padding: 10px;
+
+    .row {
+      width: 70%;
+      margin: 10px auto;
+
+      label {
+        span {
+          color: red;
+          font-weight: bold;
+        }
+
+        input {
+          display: block;
+          width: 96%;
+          height: 36px;
+          font-size: 18px;
+
+          &::placeholder {
+            font-size: 12px;
+          }
+
+        }
+
+      }
+
+      .btnSubmit {
+        background-color: #B7CF52;
+        color: #FFFFFF;
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        margin: 12px 0;
+        padding: 12px;
+
+        &:hover {
+          background-color: #94a844;
+        }
+
+        &:active {
+          background-color: #B7CF52;
+        }
+      }
+    }
+
+  }
+
+}
+
+
+
+
