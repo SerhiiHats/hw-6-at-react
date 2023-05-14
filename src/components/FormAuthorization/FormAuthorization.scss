@@ -1,33 +1,37 @@
+@import "src/index";
+
 .containerForm {
-  background-color: #2B7A7B;
-  color: white;
-  padding: 20px 0;
+  font-family: $strongFontFamily;
+  background-color: $innerBackGroundColor;
+  color: $innerColor;
+  padding: $size * 2 0;
 
   .formFeedback {
-    width: 500px;
+    width: $size * 50;
     margin: 0 auto 0 auto;
-    border: 2px solid #61dafb;
-    //background-color: lightgray;
-    padding: 10px;
+    border: $size * 0.2 solid $borderColor;
+    padding: $size;
 
     .row {
       width: 70%;
-      margin: 10px auto;
+      margin: $size auto;
 
       label {
+        font-size: $size * 1.5;
+
         span {
-          color: red;
+          color: $attentionColor;
           font-weight: bold;
         }
 
         input {
           display: block;
           width: 96%;
-          height: 36px;
-          font-size: 18px;
+          height: $size * 3.6;
+          font-size: $fontSize* 1.2;
 
           &::placeholder {
-            font-size: 12px;
+            font-size: $fontSize * 0.8;
           }
 
         }
@@ -35,20 +39,20 @@
       }
 
       .btnSubmit {
-        background-color: #B7CF52;
-        color: #FFFFFF;
+        background-color: $otherBackGroundColor;
+        color: $innerColor;
         font-weight: bold;
-        font-size: 16px;
+        font-size: $fontSize;
         border: none;
-        margin: 12px 0;
-        padding: 12px;
+        margin: $size * 1.2 0;
+        padding: $size * 1.2;
 
         &:hover {
-          background-color: #94a844;
+          background-color: darken($otherBackGroundColor, $amountDarken);
         }
 
         &:active {
-          background-color: #B7CF52;
+          background-color: $otherBackGroundColor;
         }
       }
     }

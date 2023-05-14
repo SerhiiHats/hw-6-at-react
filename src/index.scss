@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+$fontSize: 16px;
+$size: 10px;
+$amountDarken: 20%;
+$majorBackGroundColor: #17252A;
+$innerBackGroundColor: #2B7A7B;
+$otherBackGroundColor: #B7CF52;
+$majorColor: #c2c2c2;
+$innerColor: white;
+$attentionColor: red;
+$boxShadowColor: gray;
+$borderColor:#61dafb;
+$majorFontFamily: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',monospace;
+$innerFontFamily: Arial, "Helvetica Neue", Helvetica, sans-serif;
+$smileFontFamily: 'Shantell Sans', cursive;
+$strongFontFamily: 'Roboto', sans-serif;
+
+
+//@import "./components/App/App.scss";
+//@import "components/Header/Header";
+//@import "components/FormAuthorization/FormAuthorization";
+
+

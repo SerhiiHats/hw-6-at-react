@@ -1,0 +1,11 @@
+@import "src/index";
+
+.App {
+  max-width: $size * 90;
+  background-color: $majorBackGroundColor;
+  color: $majorColor;
+  font-family: $strongFontFamily;
+  margin: $size * 5 auto 0 auto;
+  padding-bottom: $size * 2;
+  box-shadow: 0 0 $size * 0.7 $size * 0.2 $boxShadowColor;
+}
