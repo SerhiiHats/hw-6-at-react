@@ -8,4 +8,8 @@
   margin: $size * 5 auto 0 auto;
   padding-bottom: $size * 2;
   box-shadow: 0 0 $size * 0.7 $size * 0.2 $boxShadowColor;
+
+  .answerRedux {
+    text-align: center;
+  }
 }

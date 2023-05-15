@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {addAC} from "./formAction";
+import {ADD_REQUEST, addAC, formAction} from "./formAction";
 import {connect} from "react-redux";
 import styles from "./FormAuthorization.module.scss";
 
@@ -9,27 +9,29 @@ class FormAuthorization extends Component {
     userLastName: "",
     userEmail: "",
     userAuth: false,
-    validate_userName: false,
-    validate_userLastName: false,
-    validate_userEmail: false,
+    validate_userName: true,
+    validate_userLastName: true,
+    validate_userEmail: true,
   }
 
   handlerValue(e, valueName) {
     this.setState({[valueName]: e.target.value});
   }
 
-  handlerValidateName(e, valueName) {
-    const isValidName = /^[a-zA-Zа-яА-ЯІіЇїҐґ]+$/.test(e.target.value);
-    isValidName ? this.setState({[`validate_${valueName}`]: true})
-      : this.setState({[`validate_${valueName}`]: false});
-    console.log(isValidName)
-  }
+  isValidate() {
+    const VALIDATE_USER_NAME = /^[a-zA-Zа-яА-ЯІіЇїҐґ]+$/.test(this.state.userName);
+    const VALIDATE_USER_LAST_NAME = /^[a-zA-Zа-яА-ЯІіЇїҐґ]+$/.test(this.state.userLastName);
+    const VALIDATE_USER_EMAIL = /^\S+@\S+\.\S+$/.test(this.state.userEmail);
+    const USER_AUTH = VALIDATE_USER_NAME && VALIDATE_USER_LAST_NAME && VALIDATE_USER_EMAIL;
 
-  handlerValidateEmail(e, valueName) {
-    const isValidEmail = /^\S+@\S+\.\S+$/.test(e.target.value);
-    isValidEmail ? this.setState({[`validate_${valueName}`]: true})
-      : this.setState({[`validate_${valueName}`]: false});
-    console.log(isValidEmail)
+    this.setState({
+      userAuth: USER_AUTH,
+      validate_userName: VALIDATE_USER_NAME,
+      validate_userLastName: VALIDATE_USER_LAST_NAME,
+      validate_userEmail: VALIDATE_USER_EMAIL,
+    });
+
+    return USER_AUTH;
   }
 
   cleanForm() {
@@ -37,7 +39,7 @@ class FormAuthorization extends Component {
       userName: "",
       userLastName: "",
       userEmail: "",
-    })
+    });
   }
 
   render() {
@@ -57,7 +59,6 @@ class FormAuthorization extends Component {
                      placeholder={"Enter your name..."}
                      onChange={(e) => {
                        this.handlerValue(e, "userName");
-                       this.handlerValidateName(e, "userName");
                      }} value={this.state.userName}/>
             </label>
           </div>
@@ -68,7 +69,6 @@ class FormAuthorization extends Component {
                      placeholder={"Enter your last name..."}
                      onChange={(e) => {
                        this.handlerValue(e, "userLastName");
-                       this.handlerValidateName(e, "userLastName");
                      }} value={this.state.userLastName}/>
             </label>
           </div>
@@ -79,7 +79,6 @@ class FormAuthorization extends Component {
                      placeholder={"Enter your e-mail..."}
                      onChange={(e) => {
                        this.handlerValue(e, "userEmail");
-                       this.handlerValidateEmail(e, "userEmail");
                      }} value={this.state.userEmail} required/>
             </label>
           </div>
@@ -88,26 +87,32 @@ class FormAuthorization extends Component {
             <input className={styles.btnSubmit} type={"submit"} value={"Зареєструватися"}
                    onClick={(e) => {
                      e.preventDefault();
-                     const {userName, userLastName, userEmail} = this.state;
-                     this.setState({userAuth: {userName, userLastName, userEmail}});
-                     // dispatch(addAC(this.state));
-                     this.cleanForm();
+                     const validate = this.isValidate();
+
+                     if(validate){
+                       const {userName, userLastName, userEmail} = this.state;
+                       this.setState({userAuth: {userName, userLastName, userEmail}});
+                       dispatch(formAction({userName, userLastName, userEmail}));
+                       this.cleanForm();
+                     }
                    }}/>
           </div>
         </form>
 
-        {this.state.userAuth && <p>{JSON.stringify(this.state.userAuth)}</p>}
-        <p>{this.state.validate_userName && "true UserName"}</p>
-        <p>{this.state.validate_userLastName && "true LastName"}</p>
-        <p>{this.state.validate_userEmail && "true UserEmail"}</p>
+        <div className={styles.answer}>
+          <p>From State: {this.state.userAuth ? '"submit success"' : "is not sent request for authorization"}</p>
+          <p>{this.state.userAuth && JSON.stringify(this.state.userAuth)}</p>
+        </div>
 
-      </div>);
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (store) => {
   return {
-    dataRequest: store.dataRequest
+    dataRequest: store.dataRequest,
+    formReducer: store.formReducer,
   }
 }
 
